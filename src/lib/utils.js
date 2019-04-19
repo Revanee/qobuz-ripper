@@ -14,7 +14,19 @@ function orderObject(object) {
     return ordered
 }
 
+function objectToArray(object) {
+    const array = []
+    for (key in object) {
+        array.push({
+            key: key,
+            value: object[key]
+        })
+    }
+    return array
+}
+
 module.exports = {
     iterateObject: iterateObject,
-    orderObject: orderObject
+    orderObject: orderObject,
+    objectToArray, objectToArray
 }

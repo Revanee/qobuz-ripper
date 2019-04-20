@@ -1,4 +1,3 @@
-const request = require('request')
 const utils = require('../utils')
 const md5 = require('js-md5')
 
@@ -37,7 +36,7 @@ function generateUrl(location, query) {
     return location + '?' + query
 }
 
-function generateTrackRequestOptions(trackId, timestamp, conf) {
+function generateTrackRequestParameters(trackId, timestamp, secret) {
     const method = 'getFileUrl'
     const object = 'track'
     const parameters = {
@@ -45,26 +44,15 @@ function generateTrackRequestOptions(trackId, timestamp, conf) {
         format_id: '6',
         intent: 'stream'
     }
-    const sig = createSignature(object, method, parameters, timestamp, conf.secret)
-    console.log('Signature: ' + sig)
+    const signature = createSignature(object, method, parameters, timestamp, secret)
     parameters.request_ts = timestamp
-    parameters.request_sig = sig
-    const allParameters = utils.objectToArray(parameters)
-    const query = generateQueryParameters(allParameters)
-    const url = generateUrl(conf.trackURL, query)
-    return {
-        url: url,
-        method: "GET",
-        headers: {
-            'X-App-Id': conf.appId,
-            'X-User-Auth-Token': conf.token
-        }
-    }
+    parameters.request_sig = signature
+    return parameters
 }
 
 module.exports = {
     generateQueryParameters: generateQueryParameters,
     generateUrl: generateUrl,
-    generateTrackRequestOptions: generateTrackRequestOptions,
+    generateTrackRequestParameters: generateTrackRequestParameters,
     createSignature: createSignature
 }

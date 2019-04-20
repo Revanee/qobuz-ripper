@@ -1,4 +1,4 @@
-const request = require('../lib/request')
+const request = require('../../lib/web/request')
 
 test('generateQueryParameters generates correct query', () => {
     const params = [

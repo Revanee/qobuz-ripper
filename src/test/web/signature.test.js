@@ -1,4 +1,4 @@
-const signature = require('../lib/signature')
+const signature = require('../../lib/web/signature')
 
 test('Generated signature is correct', () => {
     expectedSignature = 'e6d57b97a24be62be88e725e51a23a38'

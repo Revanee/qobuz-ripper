@@ -1,4 +1,4 @@
-utils = require('./utils')
+utils = require('../utils')
 md5 = require('js-md5')
 
 function createSignature(obj, method, params, timestamp, secret) {

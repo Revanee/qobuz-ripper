@@ -1,6 +1,6 @@
 const request = require('request')
 const signature = require('./signature')
-const utils = require('./utils')
+const utils = require('../utils')
 
 function generateQueryParameters(parameters) {
     return parameters
